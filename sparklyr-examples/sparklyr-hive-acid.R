@@ -16,7 +16,7 @@ print(invoke(spark_context(sc), "applicationId"))
 
 # Fetching SQL from file and loading to spark dataframe - Unable to use SQL, use table & then do select
 sdf_sql(sc,"use datalake")
-intDf <- sparklyr::spark_read_table(sc, "prospect_experian_northstar") # Collect issued here
+intDf <- sparklyr::spark_read_table(sc, "scoring_results_acid") # Collect issued here
 data <- intDf %>% select(id_key,col1,col2,col3,col4) %>% rename_all(toupper) %>% rename(id_key = ID_KEY)
 
 #hs <- build(HiveWarehouseBuilder.session(sc))
