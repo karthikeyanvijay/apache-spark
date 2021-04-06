@@ -16,7 +16,7 @@
     ```
     conda create -y -n r_env r r-essentials r-base r-sparklyr conda-pack
     conda activate r_env
-    conda install -c conda-forge r-xgboost
+    conda install -c conda-forge r-xgboost r-arrow
     ```
 * To package the R environment for run the following command
     ```
