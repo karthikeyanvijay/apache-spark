@@ -34,6 +34,7 @@ data <- sdf_sql(sc,sqlText)
 
 # Define Function
 func_scoring <- function(p){
+        #library(arrow)
         p
 }
 
