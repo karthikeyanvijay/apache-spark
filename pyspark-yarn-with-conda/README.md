@@ -1,6 +1,6 @@
-# SparklyR Examples
+# PySpark Examples
 
-## Setup R environment
+## Setup Conda & Python environment on Gateway/Edge host
 * Directory creation
     ```
     mkdir /hadoopfs/fs1/anaconda3
@@ -14,26 +14,22 @@
     ```
 * Create Environment - Run the following on the gateway node. `cdp-users` group will need to provide the entire conda path - `sudo /hadoopfs/fs1/anaconda3/bin/conda`
     ```
-    conda create -y -n r_env r r-essentials r-base r-sparklyr conda-pack
-    conda activate r_env
-    conda install -c conda-forge r-xgboost r-arrow
-    ```
-* To package the R environment for run the following command
-    ```
-    cd /hadoopfs/fs1/anaconda3/envs/
-    conda pack -o /hadoopfs/fs1/r_env.tar.gz -d ./r_env
+    conda create -y -n spark_python37_env python=3.7 -c pandas conda-pack
+    conda install -c conda-forge pyarrow 
+    conda pack -f -o spark_python37_env.tar.gz
     ```
 * All users should now be able to run the following access. Use sudo only if you are running in to issues with installing additional packages. `cdp-users` group will need to provide the entire conda path - `sudo /hadoopfs/fs1/anaconda3/bin/conda`
     ```
-    conda activate r_env
+    conda spark_python37_env
     conda deactivate
     ```
 
-## Execute SparklyR jobs on YARN
-Create a Bash script to source the environment before kicking off the job.
+## Submitting PySpark job
+Submit the PySpark job with the following command
 ```
-#!/bin/bash
-source /hadoopfs/fs1/anaconda3/etc/profile.d/conda.sh
-conda activate r_env
-Rscript <script-name>.R
+ PYSPARK_PYTHON=./spark_python37_env/bin/python spark-submit \
+    --conf spark.yarn.appMasterEnv.PYSPARK_PYTHON=./spark_python37_env/bin/python \
+    --master yarn \
+    --deploy-mode cluster \
+    --archives spark_python37_env.tar.gz#spark_python37_env panda-pyspark.py
 ```
