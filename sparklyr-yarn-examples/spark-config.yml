@@ -1,9 +1,5 @@
 default:
   spark.app.name: "sparklyr-ACID-config"
-  spark.kryo.registrator: "com.qubole.spark.hiveacid.util.HiveAcidKyroRegistrator"
-  spark.sql.extensions: "com.hortonworks.spark.sql.rule.Extensions"
-  spark.datasource.hive.warehouse.read.mode: "DIRECT_READER_V1"
-  sparklyr.jars.default: "/opt/cloudera/parcels/CDH/jars/hive-warehouse-connector-assembly-1.0.0.7.2.7.2-1.jar"
   spark.r.command: "./r_env/bin/Rscript"
   sparklyr.apply.env.R_HOME: "./r_env/lib/R"
   sparklyr.apply.env.RHOME: "./r_env"
@@ -20,3 +16,8 @@ default:
   spark.yarn.queue: "default"
   spark.yarn.dist.archives: "/hadoopfs/fs1/code/r_env.tar.gz#r_env"
   spark.yarn.dist.files:  "scoring.Rdata#scoring.Rdata"
+  # The config below are only required for ACID tables
+  spark.kryo.registrator: "com.qubole.spark.hiveacid.util.HiveAcidKyroRegistrator"
+  spark.sql.extensions: "com.hortonworks.spark.sql.rule.Extensions"
+  spark.datasource.hive.warehouse.read.mode: "DIRECT_READER_V1"
+  sparklyr.jars.default: "/opt/cloudera/parcels/CDH/jars/hive-warehouse-connector-assembly-1.0.0.7.2.7.2-1.jar"

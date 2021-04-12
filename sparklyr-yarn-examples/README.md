@@ -31,10 +31,11 @@
     ```
 
 ## Submit SparklyR jobs on YARN
-Create a Bash script to source the environment before kicking off the job.
+- Review the `spark-config.yml`. Use the Hive ACID properties if required.
+- Create a Bash script to source the environment before kicking off the job.
 ```
 #!/bin/bash
 source /hadoopfs/fs1/anaconda3/etc/profile.d/conda.sh
 conda activate r_env
-Rscript <script-name>.R
+Rscript sparklyr-sample.R
 ```
