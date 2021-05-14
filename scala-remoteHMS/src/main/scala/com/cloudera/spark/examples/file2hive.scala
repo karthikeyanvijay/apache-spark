@@ -4,10 +4,10 @@ import org.apache.spark.sql.SparkSession
 /**
  * @author Vijay Anand Karthikeyan
  */
-object remoteHMS {
+object file2hive {
   
   def foo(x : Array[String]) = x.foldLeft("")((a,b) => a + b)
-  final val sparkApp = "remoteHMS"
+  final val sparkApp = "file2hive"
 
   def main(args : Array[String]) {
     //println("concat arguments = " + foo(args))

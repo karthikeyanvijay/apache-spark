@@ -1,11 +1,15 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cloudera.spark.examples</groupId>
   <artifactId>file2hive</artifactId>
   <version>1.0</version>
-  <name>file2hive</name>
+  <name>loadfile2hive</name>
+  <properties>
+    <scala.tools.version>2.11</scala.tools.version>
+    <scala.version>2.11.12</scala.version>
+    <spark.version>2.4.5</spark.version>
+  </properties>
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <plugins>
@@ -56,7 +60,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.cloudera.spark.examples.file2hive</mainClass>
+              <mainClass>com.cloudera.spark.examples.loadfile2hive</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -66,28 +70,21 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_2.11</artifactId>
-      <version>2.3.2</version>
+      <artifactId>spark-core_${scala.tools.version}</artifactId>
+      <version>${spark.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_2.11</artifactId>
-      <version>2.3.2</version>
-      <scope>compile</scope>
+      <artifactId>spark-sql_${scala.tools.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-hive_2.11</artifactId>
-      <version>2.3.2</version>
-      <scope>compile</scope>
+      <artifactId>spark-hive_${scala.tools.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.25</version>
-      <scope>5.1.27</scope>
-    </dependency>
-
   </dependencies>
 </project>
